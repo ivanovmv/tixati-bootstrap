@@ -1,69 +1,73 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-	<meta content="text/html; charset=utf-8" http-equiv="content-type">
-	<title>Trackers - Tixati Web Interface</title>
-	<link rel="stylesheet" type="text/css" href="/main.css">
-</head>
-<body>
-
-<table class="topnav">
-	<tr>
-		<td><a href="/home">Home</a></td>
-		<td class="topnavselitem"><a href="/transfers">Transfers</a></td>
-		<td><a href="/bandwidth">Bandwidth</a></td>
-		<td><a href="/dht">DHT</a></td>
-		<td><a href="/settings">Settings</a></td>
-		<td><a href="/help">Help</a></td>
-	</tr>
-</table>
-
-<br/>
-
-<div class="titlehdr">
-	$name$
-</div>
-
-<table class="xfernav">
-	<tr>
-		<td><a href="details">Details</a></td>
-		<td><a href="files">Files</a></td>
-		<td class="xfernavselitem"><a href="trackers">Trackers</a></td>
-		<td><a href="peers">Peers</a></td>
-		<td><a href="pieces">Pieces</a></td>
-		<td><a href="bandwidth">Bandwidth</a></td>
-		<td><a href="eventlog">Event Log</a></td>
-		<td><a href="options">Options</a></td>
-	</tr>
-</table>
-
-<br/>
-
-
-<table class="xferstable">
-	<tr>
-		<th>Group</th>
-		<th>URL</th>
-		<th>Status</th>
-	</tr>
-<!--list_start trackers-->
-	<tr class="$statusclass_alt$">
-		<td>$group$</td>
-		<td>$url$</td>
-		<td>$status$</td>
-	</tr>
-<!--list_end-->
-</table>
-
-<br/>
-
-<form method="post" action="http://$host$/transfers/$guid$/trackers/action">
-<input type="submit" name="nav_trackeredit" Value="Edit Trackers"/>
-</form>
-
-<br/>
-<br/>
-
-</body>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="/favicon.ico">
+        <title>Trackers - Tixati Web Interface</title>
+        <!-- Bootstrap core CSS -->
+        <link href="/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="/main.css" rel="stylesheet">
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- [if lt IE 9]>
+        <script src="/html5shiv.min.js"></script>
+        <script src="/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <table class="topnav">
+            <tr>
+                <td><a href="/home">Home</a></td>
+                <td class="topnavselitem"><a href="/transfers">Transfers</a></td>
+                <td><a href="/bandwidth">Bandwidth</a></td>
+                <td><a href="/dht">DHT</a></td>
+                <td><a href="/settings">Settings</a></td>
+                <td><a href="/help">Help</a></td>
+            </tr>
+        </table>
+        <br/>
+        <div class="titlehdr">
+            $name$
+        </div>
+        <table class="xfernav">
+            <tr>
+                <td><a href="details">Details</a></td>
+                <td><a href="files">Files</a></td>
+                <td class="xfernavselitem"><a href="trackers">Trackers</a></td>
+                <td><a href="peers">Peers</a></td>
+                <td><a href="pieces">Pieces</a></td>
+                <td><a href="bandwidth">Bandwidth</a></td>
+                <td><a href="eventlog">Event Log</a></td>
+                <td><a href="options">Options</a></td>
+            </tr>
+        </table>
+        <br/>
+        <table class="xferstable">
+            <tr>
+                <th>Group</th>
+                <th>URL</th>
+                <th>Status</th>
+            </tr>
+            <!--list_start trackers-->
+            <tr class="$statusclass_alt$">
+                <td>$group$</td>
+                <td>$url$</td>
+                <td>$status$</td>
+            </tr>
+            <!--list_end-->
+        </table>
+        <br/>
+        <form method="post" action="http://$host$/transfers/$guid$/trackers/action">
+        <input type="submit" name="nav_trackeredit" Value="Edit Trackers"/>
+        </form>
+        <br/>
+        <br/>
+        <!-- Bootstrap core JavaScript -->
+        <script src="/jquery.min.js"></script>
+        <script src="/bootstrap.min.js"></script>
+        <script src="/ie10-viewport-bug-workaround.js"></script>
+    </body>
 </html>
 

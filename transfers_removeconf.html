@@ -1,56 +1,65 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-	<meta content="text/html; charset=utf-8" http-equiv="content-type">
-	<title>Confirm Remove - Tixati Web Interface</title>
-	<link rel="stylesheet" type="text/css" href="/main.css">
-</head>
-<body>
-
-<br/>
-Confirm Transfer Removal<br/>
-(This will not delete downloaded files)
-<br/>
-<br/>
-
-<form method="post" action="/transfers/action">
-
-<table class="xferstable">
-	<tr>
-		<th>&nbsp;</th>
-		<th>Name</th>
-		<th>Bytes</th>
-		<th>&#37;</th>
-		<th>Status</th>
-		<th>B/s In</th>
-		<th>B/s Out</th>
-		<th>Priority</th>
-		<th>Time Left</th>
-	</tr>
-<!--list_start selected_transfers-->
-	<tr class="$statusclass_alt$">
-		<td><input type="checkbox" name="$guid$" value="1" checked/></td>
-		<td><a href="/transfers/$guid$/details">$name$</a></td>
-		<td>$bytes$</td>
-		<td>$progress$</td>
-		<td>$status$</td>
-		<td>$bps_in$</td>
-		<td>$bps_out$</td>
-		<td>$priority$</td>
-		<td>$timeleft$</td>
-	</tr>
-<!--list_end-->
-</table>
-
-<br/>
-<input type="submit" name="removeconf" value="Remove Transfers"/>&nbsp;
-<input type="submit" name="nav_transfers" Value="Cancel"/>
-</form>
-
-<br/>
-<br/>
-
-</body>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="/favicon.ico">
+        <title>Confirm Remove - Tixati Web Interface</title>
+        <!-- Bootstrap core CSS -->
+        <link href="/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="/main.css" rel="stylesheet">
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- [if lt IE 9]>
+        <script src="/html5shiv.min.js"></script>
+        <script src="/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <br/>
+        Confirm Transfer Removal<br/>
+        (This will not delete downloaded files)
+        <br/>
+        <br/>
+        <form method="post" action="/transfers/action">
+        <table class="xferstable">
+            <tr>
+                <th>&nbsp;</th>
+                <th>Name</th>
+                <th>Bytes</th>
+                <th>&#37;</th>
+                <th>Status</th>
+                <th>B/s In</th>
+                <th>B/s Out</th>
+                <th>Priority</th>
+                <th>Time Left</th>
+            </tr>
+            <!--list_start selected_transfers-->
+            <tr class="$statusclass_alt$">
+                <td><input type="checkbox" name="$guid$" value="1" checked/></td>
+                <td><a href="/transfers/$guid$/details">$name$</a></td>
+                <td>$bytes$</td>
+                <td>$progress$</td>
+                <td>$status$</td>
+                <td>$bps_in$</td>
+                <td>$bps_out$</td>
+                <td>$priority$</td>
+                <td>$timeleft$</td>
+            </tr>
+            <!--list_end-->
+        </table>
+        <br/>
+        <input type="submit" name="removeconf" value="Remove Transfers"/>&nbsp;
+        <input type="submit" name="nav_transfers" Value="Cancel"/>
+        </form>
+        <br/>
+        <br/>
+        <!-- Bootstrap core JavaScript -->
+        <script src="/jquery.min.js"></script>
+        <script src="/bootstrap.min.js"></script>
+        <script src="/ie10-viewport-bug-workaround.js"></script>
+    </body>
 </html>
 
 
