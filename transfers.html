@@ -38,7 +38,7 @@
         //-->
     </script>
     <body onload="udctrls()">
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#tixati-navbar-collapse">
@@ -48,7 +48,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="http://tixati.com/">
-                        <img alt="Brand" src="logo.png">
+                        <img alt="Brand" src="/logo.png">
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="tixati-navbar-collapse">
@@ -63,6 +63,17 @@
                 </div>
             </div>
         </nav>
+        <div class="container-fluid">
+            <div class="well well-sm">
+                <form method="post" action="/transfers/action" enctype="multipart/form-data" class="form-inline">
+                    <input type="submit" name="addtransfer" Value="Add" class="btn btn-default btn-sm">
+                    <input type="submit" name="start" value="Start" class="selctrl btn btn-default btn-sm">
+                    <input type="submit" name="stop" value="Stop" class="selctrl btn btn-default btn-sm">
+                    <input type="submit" name="remove" value="Remove" class="selctrl btn btn-default btn-sm">
+                    <input type="submit" name="properties" value="Properties" class="selctrl btn btn-default btn-sm">
+                </form>
+            </div>
+        </div>
         <br/>
         <form method="post" action="/transfers/action" enctype="multipart/form-data">
             <table class="xfersctrls">

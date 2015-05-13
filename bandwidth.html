@@ -16,20 +16,8 @@
         <script src="/respond.min.js"></script>
         <![endif]-->
     </head>
-    <script>
-        <!--
-        function setupcharts()
-        {
-            var w = window.innerWidth || document.documentElement.clientWidth;w=Math.floor(Math.max(200,(w-16)*0.98));
-            var h= window.innerHeight || document.documentElement.clientHeight;h=Math.floor(Math.max(120,h/2-90));
-            document.getElementById("chart_in").src="bandwidth/chart_in_"+w+"x"+h+"_1.png";
-            document.getElementById("chart_out").src="bandwidth/chart_out_"+w+"x"+h+"_1.png";
-            document.getElementById("chart_ping").src="bandwidth/chart_ping_"+w+"x"+h+"_1.png";
-        }
-        //-->
-    </script>
-    <body onload="setupcharts()">
-        <nav class="navbar navbar-default">
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#tixati-navbar-collapse">
@@ -39,7 +27,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="http://tixati.com/">
-                        <img alt="Brand" src="logo.png">
+                        <img alt="Brand" src="/logo.png">
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="tixati-navbar-collapse">
@@ -54,42 +42,75 @@
                 </div>
             </div>
         </nav>
-        <br>
-        <form method="post" action="/bandwidth/action">
-            <table class="bwctrls">
-                <tbody>
-                    <tr>
-                        <td>KB/s In <input type="checkbox" name="throttle_in" value="1" $throttle_in_checked$/><input type="number" name="throttle_in_kbps" min="1" max="100000" value="$throttle_in_kbps$"/></td>
-                        <td>KB/s Out <input type="checkbox" name="throttle_out" value="1" $throttle_out_checked$/><input type="number" name="throttle_out_kbps" min="1" max="100000" value="$throttle_out_kbps$"/></td>
-                        <td>Auto-Limit <input type="checkbox" name="autolimit" value="1" $autolimit_checked$/></td>
-                        <td>Presets <select name="bwpresets"><!--select bwpresets--></select></td>
-                        <td><input type="submit" name="update" Value="Apply"/></td>
-                    </tr>
-                </tbody>
-            </table>
-        </form>
-        <noscript>
-            <image class="bwviewchart" src="bandwidth/chart_in_480x300_1.png" alt="Incoming Bandwidth"/>
-        </noscript>
-        <image class="bwviewchart" id="chart_in"/>
-        <br/>
-        <noscript>
-            <image class="bwviewchart" src="bandwidth/chart_out_480x300_1.png" alt="Outgoing Bandwidth"/>
-        </noscript>
-        <image class="bwviewchart" id="chart_out"/>
-        <br/>
-        <!--if autolimit-->
-        <noscript>
-            <image class="bwviewchart" src="bandwidth/chart_ping_480x300_1.png" alt="Auto-Limit Ping Round Trip Milliseconds"/>
-        </noscript>
-        <image class="bwviewchart" id="chart_ping"/>
-        <br/>
-        <!--endif-->
-        <br/>
+        <div class="container-fluid">
+            <div class="well well-sm">
+                <form method="post" action="/bandwidth/action" class="form-inline">
+                    <div class="form-group form-group-sm">
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-download"></span></div>
+                            <input type="number" name="throttle_in_kbps" min="1" max="100000" value="$throttle_in_kbps$" class="form-control"/>
+                            <div class="input-group-addon">KB/s <input type="checkbox" name="throttle_in" value="1" $throttle_in_checked$></div>
+                        </div>
+                    </div>
+                    &nbsp;
+                    <div class="form-group form-group-sm">
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-upload"></span></div>
+                            <input type="number" name="throttle_out_kbps" min="1" max="100000" value="$throttle_out_kbps$" class="form-control"/>
+                            <div class="input-group-addon">KB/s <input type="checkbox" name="throttle_out" value="1" $throttle_out_checked$></div>
+                        </div>
+                    </div>
+                    &nbsp;
+                    <div class="checkbox">
+                        <label>&nbsp;Auto-Limit <input type="checkbox" name="autolimit" value="1" $autolimit_checked$></label>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label for="presetSelect">&nbsp;Presets</label>
+                        <select id="presetSelect" class="form-control">
+                            <!--select bwpresets-->
+                        </select>
+                    </div>
+                    &nbsp;
+                    <button type="submit" name="update" Value="Apply" class="btn btn-default btn-sm">Apply</button>
+                </form>
+            </div>
+            <!-- @todo make some panel element alignment -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Incoming Bandwidth</div>
+                        <div class="panel-body">
+                            <img class="img-thumbnail img-responsive" src="bandwidth/chart_in_1323x446.png" alt="Incoming Bandwidth">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Outgoing Bandwidth</div>
+                        <div class="panel-body">
+                            <img class="img-thumbnail img-responsive" src="bandwidth/chart_out_1323x446.png" alt="Outgoing Bandwidth">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--if autolimit-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Auto-Limit Ping Round Trip Milliseconds</div>
+                        <div class="panel-body">
+                            <image class="img-thumbnail img-responsive" src="bandwidth/chart_ping_1323x223.png" alt="Auto-Limit Ping Round Trip Milliseconds"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--endif-->
+        </div>
         <!-- Bootstrap core JavaScript -->
         <script src="/jquery.min.js"></script>
         <script src="/bootstrap.min.js"></script>
         <script src="/ie10-viewport-bug-workaround.js"></script>
+        <!-- @todo Replace image graphs with javascript ones if possible -->
     </body>
 </html>
 
