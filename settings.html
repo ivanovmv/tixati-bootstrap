@@ -26,7 +26,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="http://tixati.com/">
+                    <a class="navbar-brand" href="http://tixati.com/" target="_blank">
                         <img alt="Brand" src="/logo.png">
                     </a>
                 </div>
@@ -42,72 +42,121 @@
                 </div>
             </div>
         </nav>
-        <br/>
-        <br/>
-        <form method="post" action="/settings/action">
-            <table class="settingsbox">
-                <tbody>
-                    <tr>
-                        <td>Download Slots&nbsp;<input type="number" name="setting_dlslots" min="1" max="1000" value="$setting_dlslots$"/>
-                            <br/>
-                            Recycle unused slots for uploads&nbsp;<input type="checkbox" name="setting_dlslotrecycle" value="1" $chk_setting_dlslotrecycle$/>
-                        </td>
-                        <td>Upload Slots&nbsp;<input type="number" name="setting_ulslots" min="1" max="1000" value="$setting_ulslots$"/>
-                            <br/>
-                            Recycle unused slots for downloads&nbsp;<input type="checkbox" name="setting_ulslotrecycle" value="1" $chk_setting_ulslotrecycle$/>
-                        </td>
-                        <td>
-                            <input type="submit" name="update_slots" Value="Apply"/>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </form>
-        <br/>
-        <br/>
-        <form method="post" action="/settings/action">
-            <table class="settingsbox">
-                <tbody>
-                    <tr>
-                        <td>
-                            Stop seeding on upload ratio above&nbsp;<input type="number" name="setting_seedingratiostop" step="0.1" min="0" max="100" value="$setting_seedingratiostop$"/>
-                            <br/>
-                            Stop constant seeds on upload ratio above&nbsp;<input type="number" name="setting_constantratiostop" step="0.1" min="0" max="100" value="$setting_constantratiostop$"/>
-                            <br/>
-                            Stop created seeds on upload ratio above&nbsp;<input type="number" name="setting_createdratiostop" step="0.1" min="0" max="100" value="$setting_createdratiostop$"/>
-                        </td>
-                        <td>
-                            Start new transfers&nbsp;<input type="checkbox" name="setting_xferautostartnew" value="1" $chk_setting_xferautostartnew$/><br/>
-                            Start previously running on startup&nbsp;<input type="checkbox" name="setting_xferautorestart" value="1" $chk_setting_xferautorestart$/>
-                        </td>
-                        <td>
-                            <input type="submit" name="update_xferautostartstop" Value="Apply"/>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </form>
-        <br/>
-        <br/>
-        <form method="post" action="/settings/action">
-            <table class="settingsbox">
-                <tbody>
-                    <tr>
-                        <td>
-                            Show filter-box for transfers in Web Interface&nbsp;<input type="checkbox" name="setting_webui_showfilter" value="1" $chk_setting_webui_showfilter$/>
-                        </td>
-                        <td>
-                            <input type="submit" name="update_webui" Value="Apply"/>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </form>
-        <br/>
-        <br/>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Queuing</div>
+                        <div class="panel-body">
+                            <form class="form-horizontal" method="post" action="settings/action">
+                                <div class="form-group form-group-sm">
+                                    <label for="setting_dlslots" class="col-sm-9 control-label">Download Slots</label>
+                                    <div class="col-sm-3">
+                                        <input id="setting_dlslots" class="form-control" type="number" name="setting_dlslots" min="1" max="1000" value="$setting_dlslots$">
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm">
+                                    <div class="checkbox col-sm-11 col-sm-offset-1">
+                                        <label>
+                                            <input type="checkbox" name="setting_dlslotrecycle" value="1" $chk_setting_dlslotrecycle$>Recycle unused slots for uploads
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm">
+                                    <label for="setting_ulslots" class="col-sm-9 control-label">Upload Slots</label>
+                                    <div class="col-sm-3">
+                                        <input id="setting_ulslots" class="form-control" type="number" name="setting_ulslots" min="1" max="1000" value="$setting_ulslots$">
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm">
+                                    <div class="checkbox col-sm-11 col-sm-offset-1">
+                                        <label>
+                                            <input type="checkbox" name="setting_ulslotrecycle" value="1" $chk_setting_ulslotrecycle$>Recycle unused slots for downloads
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm">
+                                    <div class="col-sm-offset-8 col-sm-4">
+                                        <input class="btn btn-default" type="submit" name="update_slots" Value="Apply">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Auto Start / Stop</div>
+                        <div class="panel-body">
+                            <form class="form-horizontal" method="post" action="/settings/action">
+                                <div class="form-group form-group-sm">
+                                    <label for="setting_seedingratiostop" class="col-sm-9 control-label">Stop seeding on upload ratio above</label>
+                                    <div class="col-sm-3">
+                                        <input id="setting_seedingratiostop" class="form-control" type="number" name="setting_seedingratiostop" step="0.1" min="0" max="100" value="$setting_seedingratiostop$">
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm">
+                                    <label for="setting_seedingratiostop" class="col-sm-9 control-label">Stop constant seeds on upload ratio above</label>
+                                    <div class="col-sm-3">
+                                        <input id="setting_constantratiostop" class="form-control" type="number" name="setting_constantratiostop" step="0.1" min="0" max="100" value="$setting_constantratiostop$">
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm">
+                                    <label for="setting_seedingratiostop" class="col-sm-9 control-label">Stop created seeds on upload ratio above</label>
+                                    <div class="col-sm-3">
+                                        <input id="setting_createdratiostop" class="form-control" type="number" name="setting_createdratiostop" step="0.1" min="0" max="100" value="$setting_createdratiostop$">
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm">
+                                    <div class="checkbox col-sm-8 col-sm-offset-4">
+                                        <label>
+                                            <input type="checkbox" name="setting_xferautostartnew" value="1" $chk_setting_xferautostartnew$>Start new transfers
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm">
+                                    <div class="checkbox col-sm-8 col-sm-offset-4">
+                                        <label>
+                                            <input type="checkbox" name="setting_xferautorestart" value="1" $chk_setting_xferautorestart$>Start previously running on startup
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm">
+                                    <div class="col-sm-offset-8 col-sm-4">
+                                        <input class="btn btn-default" type="submit" name="update_xferautostartstop" Value="Apply">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Web interface</div>
+                        <div class="panel-body">
+                            <form class="form-horizontal" method="post" action="/settings/action">
+                                <div class="form-group form-group-sm">
+                                    <div class="checkbox col-sm-12">
+                                        <label>
+                                            <input type="checkbox" name="setting_webui_showfilter" value="1" $chk_setting_webui_showfilter$>Show filter-box for transfers in Web Interface
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm">
+                                    <div class="col-sm-offset-8 col-sm-4">
+                                        <input class="btn btn-default" type="submit" name="update_webui" Value="Apply">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Bootstrap core JavaScript -->
         <script src="/jquery.min.js"></script>
         <script src="/bootstrap.min.js"></script>
         <script src="/ie10-viewport-bug-workaround.js"></script>
+        <!-- @todo form alignment needed -->
     </body>
 </html>
