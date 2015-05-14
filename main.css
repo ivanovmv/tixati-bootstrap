@@ -1,4 +1,9 @@
 body { padding-top: 70px; padding-bottom: 25px; }
+@font-face {
+    font-family: 'Glyphicons Halflings';
+    src: url('/glyphicons-halflings-regular.eot');
+    src: url('/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/glyphicons-halflings-regular.woff2') format('woff2'), url('/glyphicons-halflings-regular.woff') format('woff'), url('/glyphicons-halflings-regular.ttf') format('truetype'), url('/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
 nav.navbar { margin-bottom: 0px; }
 table.topnav{text-align: left; width: 100%; margin-left: auto; margin-right: auto;}
 table.topnav td{vertical-align: top; width: 17%; text-align: center;}
