@@ -42,35 +42,57 @@
                 </div>
             </div>
         </nav>
-        <br/>
-        <div class="titlehdr">
-            Add Transfer
+        <div class="container-fluid">
+            <h1 class="page-header">Add Transfer</h1>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Via Magnet or HTTP link
+                        </div>
+                        <div class="panel-body">
+                            <form method="post" action="/transfers/action" enctype="multipart/form-data">
+                                <div class="form-group form-group-sm">
+                                    <label for="addlinktext">Magnet link or HTTP link to .torrent file</label>
+                                    <input id="addlinktext" type="text" name="addlinktext" size=70 class="form-control">
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="noautostart" value="1"> Stop before file allocation
+                                    </label>
+                                </div>
+                                <div class="form-group form-group-sm">
+                                    <input type="submit" name="addlink" Value="Add" class="btn btn-default btn-sm">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Via .torrent file
+                        </div>
+                        <div class="panel-body">
+                            <form method="post" action="/transfers/action" enctype="multipart/form-data">
+                                <div class="form-group form-group-sm">
+                                    <label for="metafile">Upload a .torrent file</label>
+                                    <input id="metafile" type="file" name="metafile" size=70>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="noautostart" value="1">Stop before file allocation
+                                    </label>
+                                </div>
+                                <div class="form-group form-group-sm">
+                                    <input type="submit" name="addmetafile" Value="Add" class="btn btn-default btn-sm">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <br/>
-        <table class="settingsbox">
-            <tr>
-                <td>Magnet link or HTTP link to .torrent file<br/>
-                    <form method="post" action="/transfers/action" enctype="multipart/form-data">
-                        <input type="text" name="addlinktext" size=70/><br/>
-                        <input type="submit" name="addlink" Value="Add"/>&nbsp;
-                        <input type="checkbox" name="noautostart" value="1"/>Stop before file allocation
-                    </form>
-                </td>
-            </tr>
-        </table>
-        <br>
-        <table class="settingsbox">
-            <tr>
-                <td>Upload a .torrent file<br/>
-                    <form method="post" action="/transfers/action" enctype="multipart/form-data">
-                        <input type="file" name="metafile" size=70/><br/>
-                        <input type="submit" name="addmetafile" Value="Add"/>&nbsp;
-                        <input type="checkbox" name="noautostart" value="1"/>Stop before file allocation
-                    </form>
-                </td>
-            </tr>
-        </table>
-        <br>
         <!-- Bootstrap core JavaScript -->
         <script src="/jquery.min.js"></script>
         <script src="/bootstrap.min.js"></script>
