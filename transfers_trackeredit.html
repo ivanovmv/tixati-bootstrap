@@ -1,58 +1,86 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-	<meta content="text/html; charset=utf-8" http-equiv="content-type">
-	<title>Edit Trackers - Tixati Web Interface</title>
-	<link rel="stylesheet" type="text/css" href="/main.css">
-</head>
-<body>
-
-<table class="topnav">
-	<tr>
-		<td><a href="/home">Home</a></td>
-		<td class="topnavselitem"><a href="/transfers">Transfers</a></td>
-		<td><a href="/bandwidth">Bandwidth</a></td>
-		<td><a href="/dht">DHT</a></td>
-		<td><a href="/settings">Settings</a></td>
-		<td><a href="/help">Help</a></td>
-	</tr>
-</table>
-
-<br/>
-
-<div class="titlehdr">
-	$name$
-</div>
-
-<table class="xfernav">
-	<tr>
-		<td><a href="details">Details</a></td>
-		<td><a href="files">Files</a></td>
-		<td class="xfernavselitem"><a href="trackers">Trackers</a></td>
-		<td><a href="peers">Peers</a></td>
-		<td><a href="pieces">Pieces</a></td>
-		<td><a href="bandwidth">Bandwidth</a></td>
-		<td><a href="eventlog">Event Log</a></td>
-		<td><a href="options">Options</a></td>
-	</tr>
-</table>
-
-<br/>
-
-<form method="post" action="http://$host$/transfers/$guid$/trackers/action">
-Put each URL on a separate line.  Put a blank line between groups.
-<br/>
-<textarea name="trackeredit" rows="20" cols="100">
-$trackerediturls$
-</textarea>
-<br/>
-<input type="submit" name="nav_trackers" Value="Cancel Edit"/>
-<input type="submit" name="update_trackers" Value="Save Changes"/>
-</form>
-
-<br/>
-<br/>
-
-</body>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="/favicon.ico">
+        <title>Edit Trackers - Tixati Web Interface</title>
+        <!-- Bootstrap core CSS -->
+        <link href="/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="/main.css" rel="stylesheet">
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- [if lt IE 9]>
+        <script src="/html5shiv.min.js"></script>
+        <script src="/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#tixati-navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span /class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="http://tixati.com/" target="_blank">
+                        <img alt="Brand" src="/logo.png">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="tixati-navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/home">Home</a></li>
+                        <li class="active"><a href="/transfers">Transfers</a></li>
+                        <li><a href="/bandwidth">Bandwidth</a></li>
+                        <li><a href="/dht">DHT</a></li>
+                        <li><a href="/settings">Settings</a></li>
+                        <li><a href="/help">Help</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <h1 class="page-header">$name$</h1>
+            <ul class="nav nav-tabs nav-justified">
+                <li role="presentation"><a href="details">Details</a></li>
+                <li role="presentation"><a href="files">Files</a></li>
+                <li role="presentation" class="active"><a href="trackers">Trackers</a></li>
+                <li role="presentation"><a href="peers">Peers</a></li>
+                <li role="presentation"><a href="pieces">Pieces</a></li>
+                <li role="presentation"><a href="bandwidth">Bandwidth</a></li>
+                <li role="presentation"><a href="eventlog">Event Log</a></li>
+                <li role="presentation"><a href="options">Options</a></li>
+            </ul>
+            <div class="row">*
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Edit trackers
+                        </div>
+                        <div class="panel-body">
+                            <p>Put each URL on a separate line.  Put a blank line between groups.</p>
+                            <form  method="post" action="http://$host$/transfers/$guid$/trackers/action">
+                                <div class="form-group">
+                                    <textarea name="trackeredit" rows="10" class="form-control">
+                                        $trackerediturls$
+                                    </textarea>
+                                </div>
+                                <div class="form-inline form-group form-group-sm">
+                                    <input type="submit" name="nav_trackers" Value="Cancel Edit" class="btn btn-default btn-sm">
+                                    <input type="submit" name="update_trackers" Value="Save Changes" class="btn btn-default btn-sm">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bootstrap core JavaScript -->
+        <script src="/jquery.min.js"></script>
+        <script src="/bootstrap.min.js"></script>
+        <script src="/ie10-viewport-bug-workaround.js"></script>
+    </body>
 </html>
-

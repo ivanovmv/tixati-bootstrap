@@ -1,341 +1,392 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-	<meta content="text/html; charset=utf-8" http-equiv="content-type">
-	<title>Transfers - Tixati Web Interface</title>
-	<link rel="stylesheet" type="text/css" href="main.css">
-</head>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="/favicon.ico">
+        <title>Transfers - Tixati Web Interface</title>
+        <!-- Bootstrap core CSS -->
+        <link href="/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="/main.css" rel="stylesheet">
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- [if lt IE 9]>
+        <script src="/html5shiv.min.js"></script>
+        <script src="/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <script>
+        <!--
+        function udctrls()
+        {
+            var inputs = document.getElementsByClassName("selection");
+            var sel = 0;
+            for(var i=inputs.length-1; i>=0; i--)
+            {
+                if(inputs[i].checked) sel=1;
+            }
+            var btns = document.getElementsByClassName("selctrl");
+            for(var i=btns.length-1; i>=0; i--)
+            {
+                if(sel) btns[i].disabled=false;
+                else btns[i].disabled=true;
+            }
 
-<script>
-<!--
-function udctrls()
-{
-	var inputs = document.getElementsByClassName("selection");
-	var sel = 0;
-	for(var i=inputs.length-1; i>=0; i--)
-	{
-		if(inputs[i].checked) sel=1;
-	}
-	var btns = document.getElementsByClassName("selctrl");
-	for(var i=btns.length-1; i>=0; i--)
-	{
-		if(sel) btns[i].disabled=false;
-		else btns[i].disabled=true;
-	}
 
-
-}
-//-->
-</script>
-
-<body onload="udctrls()">
-
-<table class="topnav">
-	<tr>
-		<td><a href="/home">Home</a></td>
-		<td class="topnavselitem"><a href="/transfers">Transfers</a></td>
-		<td><a href="/bandwidth">Bandwidth</a></td>
-		<td><a href="/dht">DHT</a></td>
-		<td><a href="/settings">Settings</a></td>
-		<td><a href="/help">Help</a></td>
-	</tr>
-</table>
-
-<br/>
-
-<form method="post" action="/transfers/action" enctype="multipart/form-data">
-
-<table class="xfersctrls">
-	<tr>
-		<td><input type="submit" name="addtransfer" Value="Add"/></td>
-		<td><input type="submit" name="start" value="Start" class="selctrl"/></td>
-		<td><input type="submit" name="stop" value="Stop" class="selctrl"/></td>
-		<td><input type="submit" name="remove" value="Remove" class="selctrl"/></td>
-		<td><input type="submit" name="properties" value="Properties" class="selctrl"/></td>
-	</tr>
-</table>
-
-<!--if filterenabled-->
-<table class="xfersctrls">
-	<tr>
-		<td style="white-space:nowrap;">Filter&nbsp;<input type="checkbox" name="xferfilter_on" value="1" $chk_xfers_filter$/></td>
-		<td><input type="text" name="xferfilter_text" size=40 value="$xferfilter_text$"/></td>
-		<td><input type="submit" name="xferfilter_clear" value="Clear"/></td>
-		<td>
-			<select name="xferfilter_mode">
-				<!--select xferfilter_mode-->
-			</select>
-		</td>
-		<td><input type="submit" name="xferfilter_apply" value="Apply"/></td>
-	</tr>
-</table>
-<!--endif-->
-
-<table class="xferstable">
-	<tr>
-		<th>&nbsp;</th>
-		<th>Name</th>
-		<th>Bytes</th>
-		<th>&#37;</th>
-		<th>Status</th>
-		<th>B/s In</th>
-		<th>B/s Out</th>
-		<th>Priority</th>
-		<th>Time Left</th>
-	</tr>
-<!--list_start transfers-->
-	<tr class="$statusclass_alt$">
-		<td><input class="selection" type="checkbox" name="$guid$" value="1" onclick="udctrls()"/></td>
-		<td><a href="/transfers/$guid$/details">$name$</a></td>
-		<td>$bytes$</td>
-		<td>$progress$</td>
-		<td>$status$</td>
-		<td>$bps_in$</td>
-		<td>$bps_out$</td>
-		<td>$priority$</td>
-		<td>$timeleft$</td>
-	</tr>
-<!--list_end-->
-</table>
-
-<table class="xfersctrls">
-	<tr>
-		<td><input type="submit" name="searchdht" value="Search DHT" class="selctrl"/></td>
-		<td><input type="submit" name="checkfiles" value="Check Files" class="selctrl"/></td>
-		<td><input type="submit" name="delete" value="Delete Files" class="selctrl"/></td>
-	</tr>
-</table>
-
-<table class="xfersctrls">
-	<tr>
-		<td>Bandwidth Priority Group&nbsp;
-			<select name="priogrp" class="selctrl">
-				<option value="8">Ultra High</option>
-				<option value="7">Very High</option>
-				<option value="6">High</option>
-				<option value="5">Above Normal</option>
-				<option value="4" selected>Normal</option>
-				<option value="3">Below Normal</option>
-				<option value="2">Low</option>
-				<option value="1">Very Low</option>
-				<option value="0">Ultra Low</option>
-			</select>
-		</td>
-		<td>Peer Allowance&nbsp;
-			<select name="share" class="selctrl">
-				<option value="1000">x10</option>
-				<option value="500">x5</option>
-				<option value="400">x4</option>
-				<option value="300">x3</option>
-				<option value="200">x2</option>
-				<option value="150">x1.5</option>
-				<option value="100" selected>Normal</option>
-				<option value="75">75%</option>
-				<option value="50">50%</option>
-				<option value="20">20%</option>
-				<option value="10">10%</option>
-				<option value="5">5%</option>
-				<option value="2">2%</option>
-			</select>
-		</td>
-		<td><input type="submit" name="update_prio" Value="Apply" class="selctrl"/></td>
-	</tr>
-</table>
-
-<table class="xfersctrls">
-	<tr>
-		<td>Incoming Bandwidth Limit&nbsp;
-			<select name="inlimit" class="selctrl">
-				<option value="0" selected>No Limit</option>
-				<option value="100000">100 KB/s</option>
-				<option value="75000">75 KB/s</option>
-				<option value="50000">50 KB/s</option>
-				<option value="40000">40 KB/s</option>
-				<option value="30000">30 KB/s</option>
-				<option value="25000">25 KB/s</option>
-				<option value="20000">20 KB/s</option>
-				<option value="15000">15 KB/s</option>
-				<option value="10000">10 KB/s</option>
-				<option value="7500">7.5 KB/s</option>
-				<option value="5000">5 KB/s</option>
-				<option value="4000">4 KB/s</option>
-				<option value="3000">3 KB/s</option>
-				<option value="2000">2 KB/s</option>
-				<option value="1000">1 KB/s</option>
-			</select>
-		</td>
-		<td>Priority Group&nbsp;
-			<select name="inpriogrp" class="selctrl">
-				<option value="8">Ultra High</option>
-				<option value="7">Very High</option>
-				<option value="6">High</option>
-				<option value="5">Above Normal</option>
-				<option value="4" selected>Normal</option>
-				<option value="3">Below Normal</option>
-				<option value="2">Low</option>
-				<option value="1">Very Low</option>
-				<option value="0">Ultra Low</option>
-			</select>
-		</td>
-		<td>Peer Allowance&nbsp;
-			<select name="inshare" class="selctrl">
-				<option value="1000">x10</option>
-				<option value="500">x5</option>
-				<option value="400">x4</option>
-				<option value="300">x3</option>
-				<option value="200">x2</option>
-				<option value="150">x1.5</option>
-				<option value="100" selected>Normal</option>
-				<option value="75">75%</option>
-				<option value="50">50%</option>
-				<option value="20">20%</option>
-				<option value="10">10%</option>
-				<option value="5">5%</option>
-				<option value="2">2%</option>
-			</select>
-		</td>
-		<td><input type="submit" name="update_inprio" Value="Apply" class="selctrl"/></td>
-	</tr>
-</table>
-
-<table class="xfersctrls">
-	<tr>
-		<td>Outgoing Bandwidth Limit&nbsp;
-			<select name="outlimit" class="selctrl">
-				<option value="0" selected>No Limit</option>
-				<option value="100000">100 KB/s</option>
-				<option value="75000">75 KB/s</option>
-				<option value="50000">50 KB/s</option>
-				<option value="40000">40 KB/s</option>
-				<option value="30000">30 KB/s</option>
-				<option value="25000">25 KB/s</option>
-				<option value="20000">20 KB/s</option>
-				<option value="15000">15 KB/s</option>
-				<option value="10000">10 KB/s</option>
-				<option value="7500">7.5 KB/s</option>
-				<option value="5000">5 KB/s</option>
-				<option value="4000">4 KB/s</option>
-				<option value="3000">3 KB/s</option>
-				<option value="2000">2 KB/s</option>
-				<option value="1000">1 KB/s</option>
-			</select>
-		</td>
-		<td>Priority Group&nbsp;
-			<select name="outpriogrp" class="selctrl">
-				<option value="8">Ultra High</option>
-				<option value="7">Very High</option>
-				<option value="6">High</option>
-				<option value="5">Above Normal</option>
-				<option value="4" selected>Normal</option>
-				<option value="3">Below Normal</option>
-				<option value="2">Low</option>
-				<option value="1">Very Low</option>
-				<option value="0">Ultra Low</option>
-			</select>
-		</td>
-		<td>Peer Allowance&nbsp;
-			<select name="outshare" class="selctrl">
-				<option value="1000">x10</option>
-				<option value="500">x5</option>
-				<option value="400">x4</option>
-				<option value="300">x3</option>
-				<option value="200">x2</option>
-				<option value="150">x1.5</option>
-				<option value="100" selected>Normal</option>
-				<option value="75">75%</option>
-				<option value="50">50%</option>
-				<option value="20">20%</option>
-				<option value="10">10%</option>
-				<option value="5">5%</option>
-				<option value="2">2%</option>
-			</select>
-		</td>
-		<td><input type="submit" name="update_outprio" Value="Apply" class="selctrl"/></td>
-	</tr>
-</table>
-
-<table class="xfersctrls">
-	<tr>
-		<td>Upload Ratio Limit&nbsp;
-			<select name="ratiolimit" class="selctrl">
-				<option value="def" selected>Default</option>
-				<option value="0">None</option>
-				<option value="100">1.00</option>
-				<option value="110">1.10</option>
-				<option value="120">1.20</option>
-				<option value="130">1.30</option>
-				<option value="140">1.40</option>
-				<option value="150">1.50</option>
-				<option value="160">1.60</option>
-				<option value="170">1.70</option>
-				<option value="180">1.80</option>
-				<option value="190">1.90</option>
-				<option value="200">2.00</option>
-				<option value="220">2.20</option>
-				<option value="240">2.40</option>
-				<option value="260">2.60</option>
-				<option value="280">2.80</option>
-				<option value="300">3.00</option>
-				<option value="350">3.50</option>
-				<option value="400">4.00</option>
-				<option value="450">4.50</option>
-				<option value="500">5.00</option>
-				<option value="600">6.00</option>
-				<option value="700">7.00</option>
-				<option value="800">8.00</option>
-			<option value=""></option>
-			</select>
-		</td>
-		<td>Remote Seed Limit&nbsp;
-			<select name="seedlimit" class="selctrl">
-				<option value="def" selected>Default</option>
-				<option value="0">None</option>
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option>
-				<option value="6">6</option>
-				<option value="7">7</option>
-				<option value="8">8</option>
-				<option value="9">9</option>
-				<option value="10">10</option>
-				<option value="15">15</option>
-				<option value="20">20</option>
-				<option value="25">25</option>
-				<option value="30">30</option>
-				<option value="35">35</option>
-				<option value="40">40</option>
-				<option value="50">50</option>
-			</select>
-		</td>
-		<td><input type="submit" name="update_ullimits" Value="Apply" class="selctrl"/></td>
-	</tr>
-</table>
-
-<table class="xfersctrls">
-	<tr>
-		<td>Constant Seeding&nbsp;
-			<select name="constseeding" class="selctrl">
-				<option value="0" selected>Off</option>
-				<option value="1">On</option>
-			</select>
-			&nbsp;
-			<input type="submit" name="update_constseeding" Value="Apply" class="selctrl"/>
-		</td>
-		<td>Super Seeding&nbsp;
-			<select name="superseeding" class="selctrl">
-				<option value="0" selected>Off</option>
-				<option value="1">On</option>
-			</select>
-			&nbsp;
-			<input type="submit" name="update_superseeding" Value="Apply" class="selctrl"/>
-		</td>
-	</tr>
-</table>
-</form>
-
-<br/>
-
-</body>
+        }
+        //-->
+    </script>
+    <body onload="udctrls()">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#tixati-navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="http://tixati.com/" target="_blank">
+                        <img alt="Brand" src="/logo.png">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="tixati-navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/home">Home</a></li>
+                        <li class="active"><a href="/transfers">Transfers</a></li>
+                        <li><a href="/bandwidth">Bandwidth</a></li>
+                        <li><a href="/dht">DHT</a></li>
+                        <li><a href="/settings">Settings</a></li>
+                        <li><a href="/help">Help</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <form method="post" action="/transfers/action" enctype="multipart/form-data">
+            <div class="container-fluid">
+                <div class="well well-sm form-inline">
+                    <div class="form-group form-group-sm">
+                        <input type="submit" name="addtransfer" Value="Add" class="btn btn-default btn-sm">
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <input type="submit" name="start" value="Start" class="selctrl btn btn-default btn-sm">
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <input type="submit" name="stop" value="Stop" class="selctrl btn btn-default btn-sm">
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <input type="submit" name="remove" value="Remove" class="selctrl btn btn-default btn-sm">
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <input type="submit" name="properties" value="Properties" class="selctrl btn btn-default btn-sm">
+                    </div>
+                </div>
+                <!--if filterenabled-->
+                <div class="well well-sm form-inline">
+                    <div class="checkbox">
+                        <label>
+                            Filter <input type="checkbox" name="xferfilter_on" value="1" $chk_xfers_filter$>
+                        </label>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <input class="form-control" type="text" name="xferfilter_text" size=40 value="$xferfilter_text$">
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <input class="btn btn-default btn-sm" type="submit" name="xferfilter_clear" value="Clear">
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <select class="form-control" name="xferfilter_mode">
+                            <!--select xferfilter_mode-->
+                        </select>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <input class="btn btn-default btn-sm" type="submit" name="xferfilter_apply" value="Apply">
+                    </div>
+                </div>
+                <!--endif-->
+                <div class="panel panel-default">
+                    <table class="table table-stripped table-responsive table-condensed">
+                        <thead>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th>Name</th>
+                                <th>Bytes</th>
+                                <th>&#37;</th>
+                                <th>Status</th>
+                                <th>B/s In</th>
+                                <th>B/s Out</th>
+                                <th>Priority</th>
+                                <th>Time Left</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--list_start transfers-->
+                            <tr class="$statusclass_alt$">
+                                <td><input class="selection" type="checkbox" name="$guid$" value="1" onclick="udctrls()"></td>
+                                <td><a href="/transfers/$guid$/details">$name$</a></td>
+                                <td>$bytes$</td>
+                                <td>$progress$</td>
+                                <td>$status$</td>
+                                <td>$bps_in$</td>
+                                <td>$bps_out$</td>
+                                <td>$priority$</td>
+                                <td>$timeleft$</td>
+                            </tr>
+                            <!--list_end-->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="well well-sm form-inline">
+                    <div class="form-group form-group-sm">
+                        <input type="submit" name="searchdht" value="Search DHT" class="btn btn-default btn-sm">
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <input type="submit" name="checkfiles" value="Check Files" class="selctrl btn btn-default btn-sm">
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <input type="submit" name="delete" value="Delete Files" class="selctrl btn btn-default btn-sm">
+                    </div>
+                </div>
+                <div class="well well-sm form-inline">
+                    <div class="form-group form-group-sm">
+                        <label for="priogrp">Bandwidth Priority Group</label>
+                        <select id="priogrp" name="priogrp" class="selctrl form-control">
+                            <option value="8">Ultra High</option>
+                            <option value="7">Very High</option>
+                            <option value="6">High</option>
+                            <option value="5">Above Normal</option>
+                            <option value="4" selected>Normal</option>
+                            <option value="3">Below Normal</option>
+                            <option value="2">Low</option>
+                            <option value="1">Very Low</option>
+                            <option value="0">Ultra Low</option>
+                        </select>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label for="share">Peer Allowance</label>
+                        <select id="share" name="share" class="selctrl form-control">
+                            <option value="1000">x10</option>
+                            <option value="500">x5</option>
+                            <option value="400">x4</option>
+                            <option value="300">x3</option>
+                            <option value="200">x2</option>
+                            <option value="150">x1.5</option>
+                            <option value="100" selected>Normal</option>
+                            <option value="75">75%</option>
+                            <option value="50">50%</option>
+                            <option value="20">20%</option>
+                            <option value="10">10%</option>
+                            <option value="5">5%</option>
+                            <option value="2">2%</option>
+                        </select>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <input type="submit" name="update_prio" Value="Apply" class="selctrl btn btn-default btn-sm">
+                    </div>
+                </div>
+                <div class="well well-sm form-inline">
+                    <div class="form-group form-group-sm">
+                        <label for="inlimit">Incoming Bandwidth Limit</label>
+                        <select id="inlimit" name="inlimit" class="selctrl form-control">
+                            <option value="0" selected>No Limit</option>
+                            <option value="100000">100 KB/s</option>
+                            <option value="75000">75 KB/s</option>
+                            <option value="50000">50 KB/s</option>
+                            <option value="40000">40 KB/s</option>
+                            <option value="30000">30 KB/s</option>
+                            <option value="25000">25 KB/s</option>
+                            <option value="20000">20 KB/s</option>
+                            <option value="15000">15 KB/s</option>
+                            <option value="10000">10 KB/s</option>
+                            <option value="7500">7.5 KB/s</option>
+                            <option value="5000">5 KB/s</option>
+                            <option value="4000">4 KB/s</option>
+                            <option value="3000">3 KB/s</option>
+                            <option value="2000">2 KB/s</option>
+                            <option value="1000">1 KB/s</option>
+                        </select>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label for="inpriogrp">Priority Group</label>
+                        <select id="inpriogrp" name="inpriogrp" class="selctrl form-control">
+                            <option value="8">Ultra High</option>
+                            <option value="7">Very High</option>
+                            <option value="6">High</option>
+                            <option value="5">Above Normal</option>
+                            <option value="4" selected>Normal</option>
+                            <option value="3">Below Normal</option>
+                            <option value="2">Low</option>
+                            <option value="1">Very Low</option>
+                            <option value="0">Ultra Low</option>
+                        </select>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label for="inshare">Peer Allowance</label>
+                        <select id="inshare" name="inshare" class="selctrl form-control">
+                            <option value="1000">x10</option>
+                            <option value="500">x5</option>
+                            <option value="400">x4</option>
+                            <option value="300">x3</option>
+                            <option value="200">x2</option>
+                            <option value="150">x1.5</option>
+                            <option value="100" selected>Normal</option>
+                            <option value="75">75%</option>
+                            <option value="50">50%</option>
+                            <option value="20">20%</option>
+                            <option value="10">10%</option>
+                            <option value="5">5%</option>
+                            <option value="2">2%</option>
+                        </select>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <input type="submit" name="update_inprio" Value="Apply" class="selctrl btn btn-default btn-sm">
+                    </div>
+                </div>
+                <div class="well well-sm form-inline">
+                    <div class="form-group form-group-sm">
+                        <label for="outlimit">Outgoing Bandwidth Limit</label>
+                        <select id="outlimit" name="outlimit" class="selctrl form-control">
+                            <option value="0" selected>No Limit</option>
+                            <option value="100000">100 KB/s</option>
+                            <option value="75000">75 KB/s</option>
+                            <option value="50000">50 KB/s</option>
+                            <option value="40000">40 KB/s</option>
+                            <option value="30000">30 KB/s</option>
+                            <option value="25000">25 KB/s</option>
+                            <option value="20000">20 KB/s</option>
+                            <option value="15000">15 KB/s</option>
+                            <option value="10000">10 KB/s</option>
+                            <option value="7500">7.5 KB/s</option>
+                            <option value="5000">5 KB/s</option>
+                            <option value="4000">4 KB/s</option>
+                            <option value="3000">3 KB/s</option>
+                            <option value="2000">2 KB/s</option>
+                            <option value="1000">1 KB/s</option>
+                        </select>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label for="outpriogrp">Priority Group</label>
+                        <select id="outpriogrp" name="outpriogrp" class="selctrl form-control">
+                            <option value="8">Ultra High</option>
+                            <option value="7">Very High</option>
+                            <option value="6">High</option>
+                            <option value="5">Above Normal</option>
+                            <option value="4" selected>Normal</option>
+                            <option value="3">Below Normal</option>
+                            <option value="2">Low</option>
+                            <option value="1">Very Low</option>
+                            <option value="0">Ultra Low</option>
+                        </select>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label for="outshare">Peer Allowance</label>
+                        <select id="outshare" name="outshare" class="selctrl form-control">
+                            <option value="1000">x10</option>
+                            <option value="500">x5</option>
+                            <option value="400">x4</option>
+                            <option value="300">x3</option>
+                            <option value="200">x2</option>
+                            <option value="150">x1.5</option>
+                            <option value="100" selected>Normal</option>
+                            <option value="75">75%</option>
+                            <option value="50">50%</option>
+                            <option value="20">20%</option>
+                            <option value="10">10%</option>
+                            <option value="5">5%</option>
+                            <option value="2">2%</option>
+                        </select>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <input type="submit" name="update_outprio" Value="Apply" class="selctrl btn btn-default btn-sm">
+                    </div>
+                </div>
+                <div class="well well-sm form-inline">
+                    <div class="form-group form-group-sm">
+                        <label for="ratiolimit">Upload Ratio Limit</label>
+                        <select id="ratiolimit" name="ratiolimit" class="selctrl form-control">
+                            <option value="def" selected>Default</option>
+                            <option value="0">None</option>
+                            <option value="100">1.00</option>
+                            <option value="110">1.10</option>
+                            <option value="120">1.20</option>
+                            <option value="130">1.30</option>
+                            <option value="140">1.40</option>
+                            <option value="150">1.50</option>
+                            <option value="160">1.60</option>
+                            <option value="170">1.70</option>
+                            <option value="180">1.80</option>
+                            <option value="190">1.90</option>
+                            <option value="200">2.00</option>
+                            <option value="220">2.20</option>
+                            <option value="240">2.40</option>
+                            <option value="260">2.60</option>
+                            <option value="280">2.80</option>
+                            <option value="300">3.00</option>
+                            <option value="350">3.50</option>
+                            <option value="400">4.00</option>
+                            <option value="450">4.50</option>
+                            <option value="500">5.00</option>
+                            <option value="600">6.00</option>
+                            <option value="700">7.00</option>
+                            <option value="800">8.00</option>
+                        </select>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label for="seedlimit">Remote Seed Limit</label>
+                        <select id="seedlimit" name="seedlimit" class="selctrl form-control">
+                            <option value="def" selected>Default</option>
+                            <option value="0">None</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                            <option value="25">25</option>
+                            <option value="30">30</option>
+                            <option value="35">35</option>
+                            <option value="40">40</option>
+                            <option value="50">50</option>
+                        </select>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <input type="submit" name="update_ullimits" Value="Apply" class="selctrl btn btn-default btn-sm">
+                    </div>
+                </div>
+                <div class="well well-sm form-inline">
+                    <div class="form-group form-group-sm">
+                        <label for="constseeding">Constant Seeding</label>
+                        <select id="constseeding" name="constseeding" class="selctrl form-control">
+                            <option value="0" selected>Off</option>
+                            <option value="1">On</option>
+                        </select>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <input type="submit" name="update_constseeding" Value="Apply" class="selctrl btn btn-default btn-sm">
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label for="superseeding">Super Seeding</label>
+                        <select id="superseeding" name="superseeding" class="selctrl form-control">
+                            <option value="0" selected>Off</option>
+                            <option value="1">On</option>
+                        </select>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <input type="submit" name="update_superseeding" Value="Apply" class="selctrl btn btn-default btn-sm">
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- Bootstrap core JavaScript -->
+        <script src="/jquery.min.js"></script>
+        <script src="/bootstrap.min.js"></script>
+        <script src="/ie10-viewport-bug-workaround.js"></script>
+    </body>
 </html>
