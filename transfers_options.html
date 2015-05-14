@@ -42,76 +42,66 @@
                 </div>
             </div>
         </nav>
-        <br/>
-        <div class="titlehdr">
-            $name$
-        </div>
-        <table class="xfernav">
-            <tr>
-                <td><a href="details">Details</a></td>
-                <td><a href="files">Files</a></td>
-                <td><a href="trackers">Trackers</a></td>
-                <td><a href="peers">Peers</a></td>
-                <td><a href="pieces">Pieces</a></td>
-                <td><a href="bandwidth">Bandwidth</a></td>
-                <td><a href="eventlog">Event Log</a></td>
-                <td class="xfernavselitem"><a href="options">Options</a></td>
-            </tr>
-        </table>
-        <br/>
-        <br/>
-        <form method="post" action="/transfers/$guid$/options/action">
-            <table class="xfersettingstopctrls">
-                <tr>
-                    <td><input type="submit" name="start" value="Start"/></td>
-                    <td><input type="submit" name="stop" value="Stop"/></td>
-                    <td><input type="submit" name="remove" value="Remove"/></td>
-                </tr>
-                <tr>
-                    <td><input type="submit" name="searchdht" value="Search DHT"/></td>
-                    <td><input type="submit" name="checkfiles" value="Check Files"/></td>
-                    <td><input type="submit" name="delete" value="Delete Files"/></td>
-                </tr>
-            </table>
-            <br/>
-            <table class="xfersettingsctrls">
-                <tr>
-                    <td>Upload Ratio Limit&nbsp;
-                        <select name="ratiolimit">
+        <div class="container-fluid">
+            <h1 class="page-header">$name$</h1>
+            <ul class="nav nav-tabs nav-justified">
+                <li role="presentation"><a href="details">Details</a></li>
+                <li role="presentation"><a href="files">Files</a></li>
+                <li role="presentation"><a href="trackers">Trackers</a></li>
+                <li role="presentation"><a href="peers">Peers</a></li>
+                <li role="presentation"><a href="pieces">Pieces</a></li>
+                <li role="presentation"><a href="bandwidth">Bandwidth</a></li>
+                <li role="presentation"><a href="eventlog">Event Log</a></li>
+                <li role="presentation" class="active"><a href="options">Options</a></li>
+            </ul>
+            <form method="post" action="/transfers/$guid$/options/action">
+                <div class="well well-sm form-inline">
+                    <input type="submit" name="start" value="Start" class="btn btn-default btn-sm">
+                    <input type="submit" name="stop" value="Stop" class="btn btn-default btn-sm">
+                    <input type="submit" name="remove" value="Remove" class="btn btn-default btn-sm">
+                    <input type="submit" name="searchdht" value="Search DHT" class="btn btn-default btn-sm">
+                    <input type="submit" name="checkfiles" value="Check Files" class="btn btn-default btn-sm">
+                    <input type="submit" name="delete" value="Delete Files" class="btn btn-default btn-sm">
+                </div>
+                <div class="well well-sm form-inline">
+                    <div class="form-group form-group-sm">
+                        <label for="ratiolimit">Upload Ratio Limit</label>
+                        <select id="ratiolimit" name="ratiolimit" class="form-control">
                             <!--select ratiolimit-->
                         </select>
-                    </td>
-                    <td>Remote Seed Limit&nbsp;
-                        <select name="seedlimit">
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label for="seedlimit">Remote Seed Limit</label>
+                        <select id="seedlimit" name="seedlimit" class="form-control">
                             <!--select seedlimit-->
                         </select>
-                    </td>
-                    <td><input type="submit" name="update_ullimits" Value="Apply"/></td>
-                </tr>
-            </table>
-            <br/>
-            <table class="xfersettingsctrls">
-                <tr>
-                    <td>
-                        Constant Seeding&nbsp;
-                        <select name="constseeding">
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <input type="submit" name="update_ullimits" Value="Apply" class="btn btn-default btn-sm">
+                    </div>
+                </div>
+                <div class="well well-sm form-inline">
+                    <div class="form-group form-group-sm">
+                        <label for="constseeding">Constant Seeding</label>
+                        <select id="constseeding" name="constseeding" class="form-control">
                             <!--select constseeding-->
                         </select>
-                        &nbsp;
-                        <input type="submit" name="update_constseeding" Value="Apply"/>
-                    </td>
-                    <td>
-                        Super Seeding&nbsp;
-                        <select name="superseeding">
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <input type="submit" name="update_constseeding" Value="Apply" class="btn btn-default btn-sm">
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label for="superseeding">Super Seeding</label>
+                        <select id="superseeding" name="superseeding" class="form-control">
                             <!--select superseeding-->
                         </select>
-                        &nbsp;
-                        <input type="submit" name="update_superseeding" Value="Apply"/>
-                    </td>
-                </tr>
-            </table>
-        </form>
-        <br/>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <input type="submit" name="update_superseeding" Value="Apply" class="btn btn-default btn-sm">
+                    </div>
+                </div>
+            </form>
+        </div>
         <!-- Bootstrap core JavaScript -->
         <script src="/jquery.min.js"></script>
         <script src="/bootstrap.min.js"></script>

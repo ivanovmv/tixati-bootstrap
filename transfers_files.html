@@ -61,48 +61,47 @@
                 </div>
             </div>
         </nav>
-        <br/>
-        <div class="titlehdr">
-            $name$
-        </div>
-        <table class="xfernav">
-            <tr>
-                <td><a href="details">Details</a></td>
-                <td class="xfernavselitem"><a href="files">Files</a></td>
-                <td><a href="trackers">Trackers</a></td>
-                <td><a href="peers">Peers</a></td>
-                <td><a href="pieces">Pieces</a></td>
-                <td><a href="bandwidth">Bandwidth</a></td>
-                <td><a href="eventlog">Event Log</a></td>
-                <td><a href="options">Options</a></td>
-            </tr>
-        </table>
-        <br/>
-        <form method="post" action="/transfers/$guid$/files/action">
-            <table class="xferstable">
-                <tr>
-                    <th>&nbsp;</th>
-                    <th>Name</th>
-                    <th>Priority</th>
-                    <th>Bytes</th>
-                    <th>Status</th>
-                </tr>
-                <!--list_start files-->
-                <tr class="$statusclass_alt$">
-                    <td><input class="selection" type="checkbox" name="$guid$" value="1" onclick="udctrls()"/></td>
-                    <td>$name$</td>
-                    <td>$priority$</td>
-                    <td>$bytes$</td>
-                    <td>$status$</td>
-                </tr>
-                <!--list_end-->
-            </table>
-            <br/>
-            <table class="xfersctrls">
-                <tr>
-                    <td>
-                        Download Priority&nbsp;
-                        <select name="priority" class="selctrl">
+        <div class="container-fluid">
+            <h1 class="page-header">$name$</h1>
+            <ul class="nav nav-tabs nav-justified">
+                <li role="presentation"><a href="details">Details</a></li>
+                <li role="presentation" class="active"><a href="files">Files</a></li>
+                <li role="presentation"><a href="trackers">Trackers</a></li>
+                <li role="presentation"><a href="peers">Peers</a></li>
+                <li role="presentation"><a href="pieces">Pieces</a></li>
+                <li role="presentation"><a href="bandwidth">Bandwidth</a></li>
+                <li role="presentation"><a href="eventlog">Event Log</a></li>
+                <li role="presentation"><a href="options">Options</a></li>
+            </ul>
+            <form method="post" action="/transfers/$guid$/files/action">
+                <div class="panel panel-default">
+                    <table class="table table-stripped table-responsive table-condensed">
+                        <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th>Name</th>
+                            <th>Priority</th>
+                            <th>Bytes</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!--list_start files-->
+                        <tr class="$statusclass_alt$">
+                            <td><input class="selection" type="checkbox" name="$guid$" value="1" onclick="udctrls()"/></td>
+                            <td>$name$</td>
+                            <td>$priority$</td>
+                            <td>$bytes$</td>
+                            <td>$status$</td>
+                        </tr>
+                        <!--list_end-->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="well well-sm form-inline">
+                    <div class="form-group form-group-sm">
+                        <label for="priority">Download Priority</label>
+                        <select id="priority" name="priority" class="selctrl form-control">
                             <option value="1000">Ultra High</option>
                             <option value="500">Very High</option>
                             <option value="250">High</option>
@@ -114,28 +113,29 @@
                             <option value="10">Ultra Low</option>
                             <option value="0">Off</option>
                         </select>
-                    </td>
-                    <td>
-                        Sequential&nbsp;
-                        <select name="bte_priority" class="selctrl">
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label for="bte_priority">Sequential</label>
+                        <select id="bte_priority" name="bte_priority" class="selctrl form-control">
                             <option value="100">Aggressive</option>
                             <option value="50">On</option>
                             <option value="0" selected>Off</option>
                         </select>
-                    </td>
-                    <td>
-                        Head and Tail First&nbsp;
-                        <select name="hat_priority" class="selctrl">
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label for="hat_priority">Head and Tail First</label>
+                        <select id="hat_priority" name="hat_priority" class="selctrl form-control">
                             <option value="100">Aggressive</option>
                             <option value="50">On</option>
                             <option value="0" selected>Off</option>
                         </select>
-                    </td>
-                    <td><input type="submit" name="update_priority" Value="Apply" class="selctrl"/></td>
-                </tr>
-            </table>
-        </form>
-        <br/>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <input type="submit" name="update_priority" Value="Apply" class="selctrl btn btn-default btn-sm">
+                    </div>
+                </div>
+            </form>
+        </div>
         <!-- Bootstrap core JavaScript -->
         <script src="/jquery.min.js"></script>
         <script src="/bootstrap.min.js"></script>
