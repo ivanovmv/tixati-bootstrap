@@ -17,43 +17,72 @@
         <![endif]-->
     </head>
     <body>
-        <br/>
-        Confirm Transfer Removal AND File Delete
-        <br/>
-        <br/>
-        <form method="post" action="/transfers/action">
-            <table class="xferstable">
-                <tr>
-                    <th>&nbsp;</th>
-                    <th>Name</th>
-                    <th>Bytes</th>
-                    <th>&#37;</th>
-                    <th>Status</th>
-                    <th>B/s In</th>
-                    <th>B/s Out</th>
-                    <th>Priority</th>
-                    <th>Time Left</th>
-                </tr>
-                <!--list_start selected_transfers-->
-                <tr class="$statusclass_alt$">
-                    <td><input type="checkbox" name="$guid$" value="1" checked/></td>
-                    <td><a href="/transfers/$guid$/details">$name$</a></td>
-                    <td>$bytes$</td>
-                    <td>$progress$</td>
-                    <td>$status$</td>
-                    <td>$bps_in$</td>
-                    <td>$bps_out$</td>
-                    <td>$priority$</td>
-                    <td>$timeleft$</td>
-                </tr>
-                <!--list_end-->
-            </table>
-            <br/>
-            <input type="submit" name="deleteconf" value="Delete Transfers And Downloaded Files"/>&nbsp;
-            <input type="submit" name="nav_transfers" Value="Cancel"/>
-        </form>
-        <br/>
-        <br/>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#tixati-navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="http://tixati.com/" target="_blank">
+                        <img alt="Brand" src="/logo.png">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="tixati-navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/home">Home</a></li>
+                        <li class="active"><a href="/transfers">Transfers</a></li>
+                        <li><a href="/bandwidth">Bandwidth</a></li>
+                        <li><a href="/dht">DHT</a></li>
+                        <li><a href="/settings">Settings</a></li>
+                        <li><a href="/help">Help</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <h1 class="page-header">Confirm Transfer Removal AND File Delete</h1>
+            <form method="post" action="/transfers/action">
+                <div class="panel panel-default">
+                    <table class="table table-responsive table-stripped table-condensed">
+                        <thead>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th>Name</th>
+                                <th>Bytes</th>
+                                <th>&#37;</th>
+                                <th>Status</th>
+                                <th>B/s In</th>
+                                <th>B/s Out</th>
+                                <th>Priority</th>
+                                <th>Time Left</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--list_start selected_transfers-->
+                            <tr class="$statusclass_alt$">
+                                <td><input type="checkbox" name="$guid$" value="1" checked></td>
+                                <td><a href="/transfers/$guid$/details">$name$</a></td>
+                                <td>$bytes$</td>
+                                <td>$progress$</td>
+                                <td>$status$</td>
+                                <td>$bps_in$</td>
+                                <td>$bps_out$</td>
+                                <td>$priority$</td>
+                                <td>$timeleft$</td>
+                            </tr>
+                            <!--list_end-->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="well well-sm form-inline">
+                    <input type="submit" name="deleteconf" value="Delete Transfers And Downloaded Files" class="btn btn-default btn-sm">
+                    <input type="submit" name="nav_transfers" Value="Cancel" class="btn btn-default btn-sm">
+                </div>
+            </form>
+        </div>
         <!-- Bootstrap core JavaScript -->
         <script src="/jquery.min.js"></script>
         <script src="/bootstrap.min.js"></script>

@@ -17,161 +17,141 @@
         <![endif]-->
     </head>
     <body>
-        <table class="topnav">
-            <tr>
-                <td><a href="/home">Home</a></td>
-                <td class="topnavselitem"><a href="/transfers">Transfers</a></td>
-                <td><a href="/bandwidth">Bandwidth</a></td>
-                <td><a href="/dht">DHT</a></td>
-                <td><a href="/settings">Settings</a></td>
-                <td><a href="/help">Help</a></td>
-            </tr>
-        </table>
-        <br/>
-        <div class="titlehdr">
-            $name$<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#tixati-navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="http://tixati.com/" target="_blank">
+                        <img alt="Brand" src="/logo.png">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="tixati-navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/home">Home</a></li>
+                        <li class="active"><a href="/transfers">Transfers</a></li>
+                        <li><a href="/bandwidth">Bandwidth</a></li>
+                        <li><a href="/dht">DHT</a></li>
+                        <li><a href="/settings">Settings</a></li>
+                        <li><a href="/help">Help</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <h1 class="page-header">$name$ <small>$shortstatus$</small></h1>
+            <ul class="nav nav-tabs nav-justified">
+                <li role="presentation" class="active"><a href="details">Details</a></li>
+                <li role="presentation"><a href="files">Files</a></li>
+                <li role="presentation"><a href="trackers">Trackers</a></li>
+                <li role="presentation"><a href="peers">Peers</a></li>
+                <li role="presentation"><a href="pieces">Pieces</a></li>
+                <li role="presentation"><a href="bandwidth">Bandwidth</a></li>
+                <li role="presentation"><a href="eventlog">Event Log</a></li>
+                <li role="presentation"><a href="options">Options</a></li>
+            </ul>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Progress
+                        </div>
+                        <ul class="list-group">
+                            <li class="list-group-item"><span class="badge">$bytes_complete$</span>Bytes Complete</li>
+                            <li class="list-group-item"><span class="badge">$bytes_remaining$</span>Remaining</li>
+                            <li class="list-group-item"><span class="badge">$bytes_total$</span>Total</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            $piecesize$ Pieces
+                        </div>
+                        <ul class="list-group">
+                            <li class="list-group-item"><span class="badge">$pieces_complete$</span>Saved</li>
+                            <li class="list-group-item"><span class="badge">$pieces_remaining$</span>Remaining</li>
+                            <li class="list-group-item"><span class="badge">$pieces_total$</span>Total</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Availability
+                        </div>
+                        <ul class="list-group">
+                            <li class="list-group-item"><span class="badge">$seeds$</span>Seeds</li>
+                            <li class="list-group-item"><span class="badge">$peers$</span>Peers</li>
+                            <li class="list-group-item"><span class="badge">$availability$</span>Copies</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <ul class="list-group">
+                    <li class="list-group-item"><span class="badge">$ul_ratio$</span>Upload Ratio</li>
+                    <li class="list-group-item"><span class="badge">$swarm_avg_dlbps$</span>Swarm Avg. Download B/s</li>
+                    <li class="list-group-item"><span class="badge">$local_avg_dlbps$</span>Local Avg. Download B/s</li>
+                    <li class="list-group-item"><span class="badge">$elapsed_time$</span>Elapsed Time</li>
+                    <li class="list-group-item"><span class="badge">$remaining_time$</span>Remaining Time</li>
+                    </ul>
+                </div>
+                <div class="col-md-8">
+                    <table class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Total</th>
+                                <th>File</th>
+                                <th>Protocol</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Bytes In</th>
+                                <td>$in_bytes_total$</td>
+                                <td>$in_bytes_file$</td>
+                                <td>$in_bytes_protocol$</td>
+                            </tr>
+                            <tr>
+                                <th>Bytes Out</th>
+                                <td>$out_bytes_total$</td>
+                                <td>$out_bytes_file$</td>
+                                <td>$out_bytes_protocol$</td>
+                            </tr>
+                            <tr>
+                                <th>B/s In</th>
+                                <td>$in_bps_total$</td>
+                                <td>$in_bps_file$</td>
+                                <td>$in_bps_protocol$</td>
+                            </tr>
+                            <tr>
+                                <th>B/s Out</th>
+                                <td>$out_bps_total$</td>
+                                <td>$out_bps_file$</td>
+                                <td>$out_bps_protocol$</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="well well-sm">
+                <form class="form-inline" method="post" action="/transfers/$guid$/details/action">
+                    <input type="submit" name="start" value="Start" class="btn btn-default btn-sm">
+                    <input type="submit" name="stop" value="Stop" class="btn btn-default btn-sm">
+                    <input type="submit" name="remove" value="Remove" class="btn btn-default btn-sm">
+                    <input type="submit" name="searchdht" value="Search DHT" class="btn btn-default btn-sm">
+                    <input type="submit" name="checkfiles" value="Check Files" class="btn btn-default btn-sm">
+                    <input type="submit" name="delete" value="Delete Files" class="btn btn-default btn-sm">
+                </form>
+            </div>
         </div>
-        <table class="xfernav">
-            <tr>
-                <td class="xfernavselitem"><a href="details">Details</a></td>
-                <td><a href="files">Files</a></td>
-                <td><a href="trackers">Trackers</a></td>
-                <td><a href="peers">Peers</a></td>
-                <td><a href="pieces">Pieces</a></td>
-                <td><a href="bandwidth">Bandwidth</a></td>
-                <td><a href="eventlog">Event Log</a></td>
-                <td><a href="options">Options</a></td>
-            </tr>
-        </table>
-        <br/>
-        $shortstatus$
-        <br/>
-        <br/>
-        <div style="clear:both;"/>
-        <table class="xferdetailstopleftstats">
-            <tr>
-                <th>Progress</th>
-            </tr>
-            <tr>
-                <td>Bytes Complete</td>
-                <td style="text-align:right;">$bytes_complete$</td>
-            </tr>
-            <tr>
-                <td>Remaining</td>
-                <td style="text-align:right;">$bytes_remaining$</td>
-            </tr>
-            <tr>
-                <td>Total</td>
-                <td style="text-align:right;">$bytes_total$</td>
-            </tr>
-        </table>
-        <table class="xferdetailstopmiddlestats">
-            <tr>
-                <th>$piecesize$ Pieces</th>
-            </tr>
-            <tr>
-                <td>Saved</td>
-                <td style="text-align:right;">$pieces_complete$</td>
-            </tr>
-            <tr>
-                <td>Remaining</td>
-                <td style="text-align:right;">$pieces_remaining$</td>
-            </tr>
-            <tr>
-                <td>Total</td>
-                <td style="text-align:right;">$pieces_total$</td>
-            </tr>
-        </table>
-        <table class="xferdetailstoprightstats">
-            <tr>
-                <th>Availability</th>
-            </tr>
-            <tr>
-                <td>Seeds</td>
-                <td style="text-align:right;">$seeds$</td>
-            </tr>
-            <tr>
-                <td>Peers</td>
-                <td style="text-align:right;">$peers$</td>
-            </tr>
-            <tr>
-                <td>Copies</td>
-                <td style="text-align:right;">$availability$</td>
-            </tr>
-        </table>
-        <div style="clear:both;"/>
-        <br/>
-        <table class="xferdetailsbottomleftstats">
-            <tr>
-                <th>Upload Ratio</th>
-                <td>$ul_ratio$</td>
-            </tr>
-            <tr>
-                <th>Swarm Avg. Download B/s</th>
-                <td>$swarm_avg_dlbps$</td>
-            </tr>
-            <tr>
-                <th>Local Avg. Download B/s</th>
-                <td>$local_avg_dlbps$</td>
-            </tr>
-            <tr>
-                <th>Elapsed Time</th>
-                <td>$elapsed_time$</td>
-            </tr>
-            <tr>
-                <th>Remaining Time</th>
-                <td>$remaining_time$</td>
-            </tr>
-        </table>
-        <table class="xferdetailsbottomrightstats">
-            <tr>
-                <th></th>
-                <th style="text-align:right;">Total</th>
-                <th style="text-align:right;">File</th>
-                <th style="text-align:right;">Protocol</th>
-            </tr>
-            <tr>
-                <th>Bytes In</th>
-                <td>$in_bytes_total$</td>
-                <td>$in_bytes_file$</td>
-                <td>$in_bytes_protocol$</td>
-            </tr>
-            <tr>
-                <th>Bytes Out</th>
-                <td>$out_bytes_total$</td>
-                <td>$out_bytes_file$</td>
-                <td>$out_bytes_protocol$</td>
-            </tr>
-            <tr>
-                <th>B/s In</th>
-                <td>$in_bps_total$</td>
-                <td>$in_bps_file$</td>
-                <td>$in_bps_protocol$</td>
-            </tr>
-            <tr>
-                <th>B/s Out</th>
-                <td>$out_bps_total$</td>
-                <td>$out_bps_file$</td>
-                <td>$out_bps_protocol$</td>
-            </tr>
-        </table>
-        <div style="clear:both;"/>
-        <br/>
-        <form method="post" action="/transfers/$guid$/details/action">
-            <table class="xferdetailsctrls">
-                <tr>
-                    <td><input type="submit" name="start" value="Start"/></td>
-                    <td><input type="submit" name="stop" value="Stop"/></td>
-                    <td><input type="submit" name="remove" value="Remove"/></td>
-                </tr>
-                <tr>
-                    <td><input type="submit" name="searchdht" value="Search DHT"/></td>
-                    <td><input type="submit" name="checkfiles" value="Check Files"/></td>
-                    <td><input type="submit" name="delete" value="Delete Files"/></td>
-                </tr>
-            </table>
-        </form>
-        <br/>
         <!-- Bootstrap core JavaScript -->
         <script src="/jquery.min.js"></script>
         <script src="/bootstrap.min.js"></script>

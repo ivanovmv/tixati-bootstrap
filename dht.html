@@ -33,70 +33,134 @@
         //-->
     </script>
     <body onload="setupcharts()">
-        <table class="topnav">
-            <tbody>
-                <tr>
-                    <td><a href="/home">Home</a></td>
-                    <td><a href="/transfers">Transfers</a></td>
-                    <td><a href="/bandwidth">Bandwidth</a></td>
-                    <td class="topnavselitem"><a href="/dht">DHT</a></td>
-                    <td><a href="/settings">Settings</a></td>
-                    <td><a href="/help">Help</a></td>
-                </tr>
-            </tbody>
-        </table>
-        <br/>
-        <table class="dhtctrl">
-            <tr>
-                <td style="text-align:left;">Status:&nbsp;<br/>Node-ID: &nbsp;</td>
-                <td style="text-align:left;">$dht_status$<br/>$dht_nodeid$</td>
-                <td>
-                    <form method="post" action="/dht/action">
-                        <input type="submit" name="start" Value="Start"/>&nbsp;<input type="submit" name="stop" Value="Stop"/>
-                    </form>
-                </td>
-            </tr>
-        </table>
-        <table class="dhtstats">
-            <tr>
-                <td>Table Buckets&nbsp;&nbsp;<span class="dhtstatsdata">$dht_table_buckets$</span></td>
-                <td>Peer DB IDs&nbsp;&nbsp;<span class="dhtstatsdata">$dht_db_ids$</span></td>
-                <td>Running Searches&nbsp;&nbsp;<span class="dhtstatsdata">$dht_searches_running$</span></td>
-            </tr>
-            <tr>
-                <td>Table Nodes&nbsp;&nbsp;<span class="dhtstatsdata">$dht_table_nodes$</span></td>
-                <td>Peer DB Peers&nbsp;&nbsp;<span class="dhtstatsdata">$dht_db_nodes$</span></td>
-                <td>Queued Searches&nbsp;&nbsp;<span class="dhtstatsdata">$dht_searches_queued$</span></td>
-            </tr>
-        </table>
-        <noscript>
-            <image src="dht/chart_orig_480x170_1.png" alt="Originated Transactions / Minute"/>
-        </noscript>
-        <image id="chart_orig"/>
-        <br/>
-        <noscript>
-            <image src="dht/chart_proc_480x170_1.png" alt="Processed Transactions / Minute"/>
-        </noscript>
-        <image id="chart_proc"/>
-        <br/>
-        <noscript>
-            <image src="dht/chart_inpkts_235x170_1.png" alt="Incoming Packets / Minute"/>
-        </noscript>
-        <image id="chart_inpkts"/>
-        <noscript>
-            <image src="dht/chart_outpkts_235x170_1.png" alt="Outgoing Packets / Minute"/>
-        </noscript>
-        <image id="chart_outpkts"/>
-        <br/>
-        <noscript>
-            <image src="dht/chart_inbytes_235x170_1.png" alt="Incoming Bytes / Second"/>
-        </noscript>
-        <image id="chart_inbytes"/>
-        <noscript>
-            <image src="dht/chart_outbytes_235x170_1.png" alt="Outgoing Bytes / Second"/>
-        </noscript>
-        <image id="chart_outbytes"/>
-        <br/>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#tixati-navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="http://tixati.com/" target="_blank">
+                        <img alt="Brand" src="/logo.png">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="tixati-navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/home">Home</a></li>
+                        <li><a href="/transfers">Transfers</a></li>
+                        <li><a href="/bandwidth">Bandwidth</a></li>
+                        <li class="active"><a href="/dht">DHT</a></li>
+                        <li><a href="/settings">Settings</a></li>
+                        <li><a href="/help">Help</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="well well-sm">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <ul class="list-group">
+                                <li class="list-group-item"><span class="badge">$dht_table_buckets$</span>Table Buckets</li>
+                                <li class="list-group-item"><span class="badge">$dht_table_nodes$</span>Table Nodes</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <ul class="list-group">
+                                <li class="list-group-item"><span class="badge">$dht_db_ids$</span>Peer DB IDs</li>
+                                <li class="list-group-item"><span class="badge">$dht_db_nodes$</span>Peer DB Peers</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <ul class="list-group">
+                                <li class="list-group-item"><span class="badge">$dht_searches_running$</span>Running Searches</li>
+                                <li class="list-group-item"><span class="badge">$dht_searches_queued$</span>Queued Searches</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-5">
+                            <ul class="list-group">
+                                <li class="list-group-item"><span class="badge">$dht_status$</span>Status:</li>
+                                <li class="list-group-item"><span class="badge">$dht_nodeid$</span>Node-ID:</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <form class="form-inline" method="post" action="/dht/action">
+                                <input type="submit" name="start" Value="Start" class="btn btn-default btn-sm">&nbsp;<input type="submit" name="stop" Value="Stop" class="btn btn-default btn-sm">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Originated Dransactions / Minute
+                        </div>
+                        <div class="panel-body">
+                            <img class="img-thumbnail img-responsive" src="dht/chart_orig_1323x446.png" alt="Originated Transactions / Minute">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Processed Transactions / Minute
+                        </div>
+                        <div class="panel-body">
+                            <img class="img-thumbnail img-responsive" src="dht/chart_proc_1323x446.png" alt="Processed Transactions / Minute">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Incoming Packets / Minute
+                        </div>
+                        <div class="panel-body">
+                            <img class="img-thumbnail img-responsive" src="dht/chart_inpkts_1323x446.png" alt="Incoming Packets / Minute">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Outgoing Packets / Minute
+                        </div>
+                        <div class="panel-body">
+                            <img class="img-thumbnail img-responsive" src="dht/chart_outpkts_1323x446.png" alt="Outgoing Packets / Minute">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Incoming Bytes / Second
+                        </div>
+                        <div class="panel-body">
+                            <img class="img-thumbnail img-responsive" src="dht/chart_inbytes_1323x446.png" alt="Incoming Bytes / Second">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Outgoing Bytes / Second
+                        </div>
+                        <div class="panel-body">
+                            <img class="img-thumbnail img-responsive" src="dht/chart_outbytes_1323x446.png" alt="Outgoing Bytes / Second">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Bootstrap core JavaScript -->
         <script src="/jquery.min.js"></script>
         <script src="/bootstrap.min.js"></script>

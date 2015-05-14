@@ -17,79 +17,86 @@
         <![endif]-->
     </head>
     <body>
-        <table class="topnav">
-            <tbody>
-                <tr>
-                    <td class="topnavselitem">
-                        <a href="/home">Home</a>
-                    </td>
-                    <td>
-                        <a href="/transfers">Transfers</a>
-                    </td>
-                    <td>
-                        <a href="/bandwidth">Bandwidth</a>
-                    </td>
-                    <td>
-                        <a href="/dht">DHT</a>
-                    </td>
-                    <td>
-                        <a href="/settings">Settings</a>
-                    </td>
-                    <td>
-                        <a href="/help">Help</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <br/>
-        <div class="titlehdr">
-            Tixati v$strver$ Web Interface
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#tixati-navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="http://tixati.com/" target="_blank">
+                        <img alt="Brand" src="/logo.png">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="tixati-navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="/home">Home</a></li>
+                        <li><a href="/transfers">Transfers</a></li>
+                        <li><a href="/bandwidth">Bandwidth</a></li>
+                        <li><a href="/dht">DHT</a></li>
+                        <li><a href="/settings">Settings</a></li>
+                        <li><a href="/help">Help</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="page-header">Tixati v$strver$ Web Interface</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Active Transfers</div>
+                        <ul class="list-group">
+                            <li class="list-group-item"><span class="badge">$downloading$</span>Downloading</li>
+                            <li class="list-group-item"><span class="badge">$seeding$</span>Seeding</li>
+                            <li class="list-group-item"><span class="badge">$peerconnections$</span>Peer Connections</li>
+                            <li class="list-group-item"><span class="badge">$bpsin$</span>B/s In</li>
+                            <li class="list-group-item"><span class="badge">$bpsout$</span>B/s Out</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Bytes Transferred</div>
+                        <ul class="list-group">
+                            <li class="list-group-item"><span class="badge">$totalbytesin$</span>Total Bytes In</li>
+                            <li class="list-group-item"><span class="badge">$totalbytesout$</span>Total Bytes Out</li>
+                            <li class="list-group-item"><span class="badge">$filebytesin$</span>File Bytes In</li>
+                            <li class="list-group-item"><span class="badge">$filebytesout$</span>File Bytes Out</li>
+                            <li class="list-group-item"><span class="badge">$uploadratio$</span>Upload Ratio</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Incoming Connections</div>
+                        <ul class="list-group">
+                            <li class="list-group-item"><span class="badge">$inc_port$</span>Port</li>
+                            <li class="list-group-item"><span class="badge">$inc_status$</span>Status</li>
+                            <li class="list-group-item"><span class="badge">$inc_received$</span>Received</li>
+                            <li class="list-group-item"><span class="badge">$inc_negotiating$</span>Negotiating</li>
+                            <li class="list-group-item"><span class="badge">$inc_placed$</span>Placed</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Eventlog
+                </div>
+                <div class="panel-body pre-scrollable">
+                    <!--list_start eventlog max_lines=100-->
+                    <samp class="show">$line$</samp>
+                    <!--list_end-->
+                </div>
+            </div>
         </div>
-        <br/>
-        <table class="homestats">
-            <tr>
-                <th>Active Transfers</th>
-                <th>Bytes Transferred</th>
-                <th>Incoming Connections</th>
-            </tr>
-            <tr>
-                <td>Downloading&nbsp;&nbsp;<span class="homestatsdata">$downloading$</span></td>
-                <td>Total Bytes In&nbsp;&nbsp;<span class="homestatsdata">$totalbytesin$</span></td>
-                <td>Port&nbsp;&nbsp;<span class="homestatsdata">$inc_port$</span></td>
-            </tr>
-            <tr>
-                <td>Seeding&nbsp;&nbsp;<span class="homestatsdata">$seeding$</span></td>
-                <td>Total Bytes Out&nbsp;&nbsp;<span class="homestatsdata">$totalbytesout$</span></td>
-                <td>Status&nbsp;&nbsp;<span class="homestatsdata">$inc_status$</span></td>
-            </tr>
-            <tr>
-                <td>Peer Connections&nbsp;&nbsp;<span class="homestatsdata">$peerconnections$</span></td>
-                <td>File Bytes In&nbsp;&nbsp;<span class="homestatsdata">$filebytesin$</span></td>
-                <td>Received&nbsp;&nbsp;<span class="homestatsdata">$inc_received$</span></td>
-            </tr>
-            <tr>
-                <td>B/s In&nbsp;&nbsp;<span class="homestatsdata">$bpsin$</span></td>
-                <td>File Bytes Out&nbsp;&nbsp;<span class="homestatsdata">$filebytesout$</span></td>
-                <td>Negotiating&nbsp;&nbsp;<span class="homestatsdata">$inc_negotiating$</span></td>
-            </tr>
-            <tr>
-                <td>B/s Out&nbsp;&nbsp;<span class="homestatsdata">$bpsout$</span></td>
-                <td>Upload Ratio&nbsp;&nbsp;<span class="homestatsdata">$uploadratio$</span></td>
-                <td>Placed&nbsp;&nbsp;<span class="homestatsdata">$inc_placed$</span></td>
-            </tr>
-        </table>
-        <br/>
-        <table class="eventlogview">
-            <tbody>
-                <!--list_start eventlog max_lines=100-->
-                <tr>
-                    <td>$line$</td>
-                </tr>
-                <!--list_end-->
-            </tbody>
-        </table>
-        <br/>
-        <br/>
         <!-- Bootstrap core JavaScript -->
         <script src="/jquery.min.js"></script>
         <script src="/bootstrap.min.js"></script>

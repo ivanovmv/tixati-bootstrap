@@ -16,105 +16,97 @@
         <script src="/respond.min.js"></script>
         <![endif]-->
     </head>
-    <script>
-        <!--
-        function setupcharts()
-        {
-            var w = window.innerWidth || document.documentElement.clientWidth;w=Math.floor(Math.max(200,(w-16)*0.98));
-            var h= window.innerHeight || document.documentElement.clientHeight;h=Math.floor(Math.max(120,h/2-90));
-            document.getElementById("chart_in").src="bandwidth/chart_in_"+w+"x"+h+"_1.png";
-            document.getElementById("chart_out").src="bandwidth/chart_out_"+w+"x"+h+"_1.png";
-        }
-        //-->
-    </script>
-    <body onload="setupcharts()">
-        <table class="topnav">
-            <tr>
-                <td><a href="/home">Home</a></td>
-                <td class="topnavselitem"><a href="/transfers">Transfers</a></td>
-                <td><a href="/bandwidth">Bandwidth</a></td>
-                <td><a href="/dht">DHT</a></td>
-                <td><a href="/settings">Settings</a></td>
-                <td><a href="/help">Help</a></td>
-            </tr>
-        </table>
-        <br/>
-        <div class="titlehdr">
-            $name$
-        </div>
-        <table class="xfernav">
-            <tr>
-                <td><a href="details">Details</a></td>
-                <td><a href="files">Files</a></td>
-                <td><a href="trackers">Trackers</a></td>
-                <td><a href="peers">Peers</a></td>
-                <td><a href="pieces">Pieces</a></td>
-                <td class="xfernavselitem"><a href="bandwidth">Bandwidth</a></td>
-                <td><a href="eventlog">Event Log</a></td>
-                <td><a href="options">Options</a></td>
-            </tr>
-        </table>
-        <br/>
-        <form method="post" action="/transfers/$guid$/bandwidth/action">
-            <table class="bwctrls">
-                <tr>
-                    <td>
-                        Incoming Bandwidth Limit&nbsp;
-                        <select name="inlimit">
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#tixati-navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="http://tixati.com/" target="_blank">
+                        <img alt="Brand" src="/logo.png">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="tixati-navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/home">Home</a></li>
+                        <li class="active"><a href="/transfers">Transfers</a></li>
+                        <li><a href="/bandwidth">Bandwidth</a></li>
+                        <li><a href="/dht">DHT</a></li>
+                        <li><a href="/settings">Settings</a></li>
+                        <li><a href="/help">Help</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <h1 class="page-header">$name$</h1>
+            <ul class="nav nav-tabs nav-justified">
+                <li role="presentation"><a href="details">Details</a></li>
+                <li role="presentation"><a href="files">Files</a></li>
+                <li role="presentation"><a href="trackers">Trackers</a></li>
+                <li role="presentation"><a href="peers">Peers</a></li>
+                <li role="presentation"><a href="pieces">Pieces</a></li>
+                <li role="presentation" class="active"><a href="bandwidth">Bandwidth</a></li>
+                <li role="presentation"><a href="eventlog">Event Log</a></li>
+                <li role="presentation"><a href="options">Options</a></li>
+            </ul>
+            <div class="well well-sm">
+                <form method="post" action="/transfers/$guid$/bandwidth/action" class="form-inline">
+                    <div class="form-group form-group-sm">
+                        <label for="inlimit">Incoming Bandwidth Limit</label>
+                        <select id="inlimit" name="inlimit" class="form-control">
                             <!--select inlimit-->
                         </select>
-                    </td>
-                    <td>
-                        Priority Group&nbsp;
-                        <select name="inpriogrp">
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label for="inpriogrp">Priority Group</label>
+                        <select id="inpriogrp" name="inpriogrp" class="form-control">
                             <!--select inpriogrp-->
                         </select>
-                    </td>
-                    <td>
-                        Peer Allowance&nbsp;
-                        <select name="inshare">
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label for="inshare">Peer Allowance</label>
+                        <select id="inshare" name="inshare" class="form-control">
                             <!--select inshare-->
                         </select>
-                    </td>
-                    <td><input type="submit" name="update_inprio" Value="Apply"/></td>
-                </tr>
-            </table>
-        </form>
-        <noscript>
-            <image class="bwviewchart" src="bandwidth/chart_in_480x300_1.png" alt="Incoming Bandwidth"/>
-        </noscript>
-        <image class="bwviewchart" id="chart_in"/>
-        <br/>
-        <form method="post" action="/transfers/$guid$/bandwidth/action">
-            <table class="bwctrls">
-                <tr>
-                    <td>
-                        Outgoing Bandwidth Limit&nbsp;
-                        <select name="outlimit">
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <input type="submit" name="update_inprio" Value="Apply" class="btn btn-default btn-sm">
+                    </div>
+                </form>
+            </div>
+            <img class="img-responsive img-thumbnail" src="bandwidth/chart_in_1323x300.png" alt="Incoming Bandwidth">
+            <div class="well well-sm">
+                <form class="form-inline" method="post" action="/transfers/$guid$/bandwidth/action">
+                    <div class="form-group form-group-sm">
+                        <label for="outlimit">Outgoing Bandwidth Limit</label>
+                        <select id="outlimit" name="outlimit" class="form-control">
                             <!--select outlimit-->
                         </select>
-                    </td>
-                    <td>
-                        Priority Group&nbsp;
-                        <select name="outpriogrp">
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label for="outpriogrp">Priority Group</label>
+                        <select id="outpriogrp" name="outpriogrp" class="form-control">
                             <!--select outpriogrp-->
                         </select>
-                    </td>
-                    <td>
-                        Peer Allowance&nbsp;
-                        <select name="outshare">
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label for="outshare">Peer Allowance</label>
+                        <select id="outshare" name="outshare" class="form-control">
                             <!--select outshare-->
                         </select>
-                    </td>
-                    <td><input type="submit" name="update_outprio" Value="Apply"/></td>
-                </tr>
-            </table>
-        </form>
-        <noscript>
-            <image class="bwviewchart" src="bandwidth/chart_out_480x300_1.png" alt="Outgoing Bandwidth"/>
-        </noscript>
-        <image class="bwviewchart" id="chart_out"/>
-        <br/>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <input type="submit" name="update_outprio" Value="Apply" class="btn btn-default btn-sm">
+                    </div>
+                </form>
+            </div>
+            <img class="img-responsive img-thumbnail" src="bandwidth/chart_out_1323x300.png" alt="Outgoing Bandwidth">
+        </div>
         <!-- Bootstrap core JavaScript -->
         <script src="/jquery.min.js"></script>
         <script src="/bootstrap.min.js"></script>

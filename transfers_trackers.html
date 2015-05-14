@@ -17,53 +17,71 @@
         <![endif]-->
     </head>
     <body>
-        <table class="topnav">
-            <tr>
-                <td><a href="/home">Home</a></td>
-                <td class="topnavselitem"><a href="/transfers">Transfers</a></td>
-                <td><a href="/bandwidth">Bandwidth</a></td>
-                <td><a href="/dht">DHT</a></td>
-                <td><a href="/settings">Settings</a></td>
-                <td><a href="/help">Help</a></td>
-            </tr>
-        </table>
-        <br/>
-        <div class="titlehdr">
-            $name$
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#tixati-navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="http://tixati.com/" target="_blank">
+                        <img alt="Brand" src="/logo.png">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="tixati-navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/home">Home</a></li>
+                        <li class="active"><a href="/transfers">Transfers</a></li>
+                        <li><a href="/bandwidth">Bandwidth</a></li>
+                        <li><a href="/dht">DHT</a></li>
+                        <li><a href="/settings">Settings</a></li>
+                        <li><a href="/help">Help</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <h1 class="page-header">$name$</h1>
+            <ul class="nav nav-tabs nav-justified">
+                <li role="presentation"><a href="details">Details</a></li>
+                <li role="presentation"><a href="files">Files</a></li>
+                <li role="presentation" class="active"><a href="trackers">Trackers</a></li>
+                <li role="presentation"><a href="peers">Peers</a></li>
+                <li role="presentation"><a href="pieces">Pieces</a></li>
+                <li role="presentation"><a href="bandwidth">Bandwidth</a></li>
+                <li role="presentation"><a href="eventlog">Event Log</a></li>
+                <li role="presentation"><a href="options">Options</a></li>
+            </ul>
+            <div class="panel panel-default">
+                <table class="table table-stripped table-responsive table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Group</th>
+                            <th>URL</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--list_start trackers-->
+                        <tr class="$statusclass_alt$">
+                            <td>$group$</td>
+                            <td>$url$</td>
+                            <td>$status$</td>
+                        </tr>
+                        <!--list_end-->
+                    </tbody>
+                </table>
+            </div>
+            <div class="well well-sm">
+                <form class="form-inline" method="post" action="/transfers/$guid$/trackers/action">
+                    <div class="form-group form-group-sm">
+                        <input type="submit" name="nav_trackeredit" Value="Edit Trackers" class="btn btn-default btn-sm">
+                    </div>
+                </form>
+            </div>
         </div>
-        <table class="xfernav">
-            <tr>
-                <td><a href="details">Details</a></td>
-                <td><a href="files">Files</a></td>
-                <td class="xfernavselitem"><a href="trackers">Trackers</a></td>
-                <td><a href="peers">Peers</a></td>
-                <td><a href="pieces">Pieces</a></td>
-                <td><a href="bandwidth">Bandwidth</a></td>
-                <td><a href="eventlog">Event Log</a></td>
-                <td><a href="options">Options</a></td>
-            </tr>
-        </table>
-        <br/>
-        <table class="xferstable">
-            <tr>
-                <th>Group</th>
-                <th>URL</th>
-                <th>Status</th>
-            </tr>
-            <!--list_start trackers-->
-            <tr class="$statusclass_alt$">
-                <td>$group$</td>
-                <td>$url$</td>
-                <td>$status$</td>
-            </tr>
-            <!--list_end-->
-        </table>
-        <br/>
-        <form method="post" action="http://$host$/transfers/$guid$/trackers/action">
-        <input type="submit" name="nav_trackeredit" Value="Edit Trackers"/>
-        </form>
-        <br/>
-        <br/>
         <!-- Bootstrap core JavaScript -->
         <script src="/jquery.min.js"></script>
         <script src="/bootstrap.min.js"></script>
